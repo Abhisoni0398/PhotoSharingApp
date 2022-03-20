@@ -4,7 +4,7 @@ const theme = {
     white: '#FAFAFA',
     lightGray: '#EBEBEB',
     gray: '#CACACA',
-    black: '#000000'
+    black: '#000000',
   },
   spacing: {
     xs: 4,
@@ -45,6 +45,6 @@ const theme = {
     m: 112,
     l: 123,
   },
-}
+};
 
 export default theme;

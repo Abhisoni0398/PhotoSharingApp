@@ -1,18 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import Nav from './src/navigation/Index';
+import {LogBox} from 'react-native';
+
+LogBox.ignoreLogs(['VirtualizedLists']);
 const App = () => {
   return (
-    <View>
-      <Text style={styles.text}>Hello World</Text>
-    </View>
+    <NavigationContainer>
+      <Nav />
+    </NavigationContainer>
   );
 };
 export default App;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    fontSize: 30,
-  },
-});
