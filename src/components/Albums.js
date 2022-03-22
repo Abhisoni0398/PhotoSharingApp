@@ -1,21 +1,32 @@
 /* eslint-disable prettier/prettier */
 import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import React, {useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import theme from '../../assets/themes';
 import albumPage from '../../assets/data/albumPage';
 import Card from './Card';
 import Separator from './Separator';
-
+import {Icon} from 'react-native-elements';
+import BottomSheet from 'reanimated-bottom-sheet';
+import BottomSheetContent from './BottomSheetContent';
 const Albums = ({navigation, navigation: {setOptions}}) => {
+  const SheetRef = useRef();
   useLayoutEffect(() => {
     setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => console.log('Hello')}>
-          <View style={styles.openSheetButton}></View>
+          <View style={styles.openSheetButton}>
+            <Icon
+              name="plus"
+              type="font-awesome"
+              size={16}
+              color={theme.colors.white}
+            />
+          </View>
         </TouchableOpacity>
       ),
     });
   });
+  const renderBottomSheetContent = () => <BottomSheetContent />;
   return (
     <>
       <ScrollView>
@@ -28,6 +39,13 @@ const Albums = ({navigation, navigation: {setOptions}}) => {
           ))}
         </View>
       </ScrollView>
+      <BottomSheet
+        ref={SheetRef}
+        snapPoints={[250, 0]}
+        initialSnap={0}
+        borderRadius={10}
+        renderContent={renderBottomSheetContent}
+      />
     </>
   );
 };
@@ -39,8 +57,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.l,
   },
   openSheetButton: {
-    width: 32,
-    height: 32,
+    width: 35,
+    height: 35,
     backgroundColor: theme.colors.primary,
     marginRight: theme.spacing.sm,
     borderRadius: 16,

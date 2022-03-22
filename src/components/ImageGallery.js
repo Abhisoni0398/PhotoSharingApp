@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   galleryText: {
     ...theme.textVariants.body3,
     color: theme.colors.gray,
+    marginBottom: 10,
   },
   galleryImage: {
     height: theme.imageHeight.l,
