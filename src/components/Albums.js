@@ -13,7 +13,7 @@ const Albums = ({navigation, navigation: {setOptions}}) => {
   useLayoutEffect(() => {
     setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => console.log('Hello')}>
+        <TouchableOpacity onPress={openBottomSheet}>
           <View style={styles.openSheetButton}>
             <Icon
               name="plus"
@@ -26,7 +26,11 @@ const Albums = ({navigation, navigation: {setOptions}}) => {
       ),
     });
   });
-  const renderBottomSheetContent = () => <BottomSheetContent />;
+  const renderBottomSheetContent = () => (
+    <BottomSheetContent handleClose={closeBottomSheet} />
+  );
+  const closeBottomSheet = () => SheetRef.current.snapTo(1);
+  const openBottomSheet = () => SheetRef.current.snapTo(0);
   return (
     <>
       <ScrollView>
@@ -42,7 +46,7 @@ const Albums = ({navigation, navigation: {setOptions}}) => {
       <BottomSheet
         ref={SheetRef}
         snapPoints={[250, 0]}
-        initialSnap={0}
+        initialSnap={1}
         borderRadius={10}
         renderContent={renderBottomSheetContent}
       />
