@@ -16,6 +16,8 @@ target 'PhotoSharingAppUi' do
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'PhotoSharingAppUiTests' do
     inherit! :complete
     # Pods for testing
