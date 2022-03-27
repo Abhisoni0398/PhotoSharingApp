@@ -3,7 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import Nav from './src/navigation/Index';
 import {LogBox} from 'react-native';
 import Onboarding from './src/components/OnBoarding';
-LogBox.ignoreLogs(['VirtualizedLists', 'seems like you']);
+import SignIn from './src/Screens/SignIn';
+LogBox.ignoreLogs(['VirtualizedLists']);
 const App = () => {
   const [showOnBoarding, setShowOnBoarding] = useState(true);
   const onBoardHandleDone = () => {
@@ -11,7 +12,8 @@ const App = () => {
   };
   return (
     <NavigationContainer>
-      {showOnBoarding ? <Onboarding handleDone={onBoardHandleDone} /> : <Nav />}
+      <SignIn />
+      {/* {showOnBoarding ? <Onboarding handleDone={onBoardHandleDone} /> : <Nav />} */}
     </NavigationContainer>
   );
 };

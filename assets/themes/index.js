@@ -5,6 +5,8 @@ const theme = {
     lightGray: '#EBEBEB',
     gray: '#CACACA',
     black: '#000000',
+    orange: '#FC2469',
+    darkGray: '#484848',
   },
   spacing: {
     xs: 4,
