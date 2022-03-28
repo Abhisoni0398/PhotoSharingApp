@@ -5,7 +5,13 @@ import backgroundImage from '../../assets/backgroundImage/background.jpg';
 import theme from '../../assets/themes';
 import Input from '../components/Input';
 import Button from '../components/Button';
-const SignIn = () => {
+import SocialLogin from '../components/SocialLogin';
+import Footer from '../components/Footer';
+// import SignUp from './SignUp';
+const SignIn = ({navigation}) => {
+  const move = () => {
+    navigation.navigate('SignUp');
+  };
   return (
     <ImageBackground source={backgroundImage} style={{flex: 1}}>
       <View style={styles.mainView}>
@@ -20,8 +26,10 @@ const SignIn = () => {
           placeholder="Enter Password"
           placeholderTextColor={theme.colors.gray}
         />
-        <Button />
+        <Button move={move} text={'Login'} />
+        <SocialLogin />
       </View>
+      <Footer text1={"Don't have an account"} text2={'SignUp'} move={move} />
     </ImageBackground>
   );
 };

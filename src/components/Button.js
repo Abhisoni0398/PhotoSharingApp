@@ -9,13 +9,15 @@ import {
 import React from 'react';
 import theme from '../../assets/themes';
 const {width} = Dimensions.get('window');
-const Button = () => {
+const Button = ({move, text, navigation}) => {
+  console.log;
+  const handleMove = () => {
+    move();
+  };
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => console.log('Hello World!')}
-        style={styles.button}>
-        <Text style={styles.buttonText}>Sign In</Text>
+      <TouchableOpacity onPress={handleMove} style={styles.button}>
+        <Text style={styles.buttonText}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: theme.colors.white,
-    fontSize: 20,
+    fontSize: 22,
     letterSpacing: 0.5,
     fontFamily: 'OpenSans-Bold',
     fontWeight: '500',
