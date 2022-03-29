@@ -12,10 +12,10 @@ import theme from '../../assets/themes';
 const {width} = Dimensions.get('window');
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const IconComponent = ({iconName}) => {
+const IconComponent = ({iconName, googleLogin}) => {
   return (
     <View>
-      <TouchableOpacity style={styles.socialButton}>
+      <TouchableOpacity style={styles.socialButton} onPress={googleLogin}>
         <Icon
           name={iconName}
           type="font-awesome"

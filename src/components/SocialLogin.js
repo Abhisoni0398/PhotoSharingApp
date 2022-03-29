@@ -1,9 +1,39 @@
 /* eslint-disable prettier/prettier */
 import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import theme from '../../assets/themes';
 import IconComponent from './IconComponent';
 const SocialLogin = () => {
+  useEffect(() => {
+    GoogleSignin.configure();
+  });
+
+  const GoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('User Info', userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+        console.log('Error occured', error);
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+        console.log('Error occured', error);
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+        console.log('Error occured', error);
+      } else {
+        // some other error happened
+        console.log('Error occured', error);
+      }
+    }
+  };
+
   return (
     <View>
       <View style={styles.separator}>
@@ -12,7 +42,7 @@ const SocialLogin = () => {
         <View style={styles.lineStyle} />
       </View>
       <View style={styles.iconStyle}>
-        <IconComponent iconName={'google'} />
+        <IconComponent iconName={'google'} googleLogin={GoogleSignIn} />
         <IconComponent iconName={'apple'} />
         <IconComponent iconName={'facebook'} />
       </View>

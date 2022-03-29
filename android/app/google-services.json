@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "239652825383",
+    "project_id": "dummy-projects-80960",
+    "storage_bucket": "dummy-projects-80960.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239652825383:android:74a40bfdb8036e4f216102",
+        "android_client_info": {
+          "package_name": "com.photosharingappui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239652825383-72t2olckmrrivone7fhb01i11uinb20r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACboYE-fwh_Wt8WuRs8X8LgcGLPpHPlMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239652825383-72t2olckmrrivone7fhb01i11uinb20r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

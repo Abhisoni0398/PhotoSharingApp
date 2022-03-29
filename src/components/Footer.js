@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-SemiBold',
     fontWeight: '500',
     letterSpacing: 0.5,
+    fontSize: 15,
   },
 });
