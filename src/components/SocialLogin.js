@@ -1,38 +1,49 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, StyleSheet} from 'react-native';
-import React, {useEffect} from 'react';
+import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   GoogleSignin,
   statusCodes,
-} from '@react-native-google-signin/google-signin';
-import theme from '../../assets/themes';
-import IconComponent from './IconComponent';
+} from "@react-native-google-signin/google-signin";
+import auth from "@react-native-firebase/auth";
+import theme from "../../assets/themes";
+import IconComponent from "./IconComponent";
+import { loginFail, loginStart, loginSuccess } from "../redux/action";
+
 const SocialLogin = () => {
   useEffect(() => {
-    GoogleSignin.configure();
+    GoogleSignin.configure({
+      webClientId:
+        "239652825383-72t2olckmrrivone7fhb01i11uinb20r.apps.googleusercontent.com",
+    });
   });
+  const dispatch = useDispatch();
+  const { isLogin, isLoading, errorMsg, userData } = useSelector(
+    (state) => state.auth
+  );
 
-  const GoogleSignIn = async () => {
+  const onGoogleButtonPress = async () => {
+    dispatch(loginStart());
+    // Get the users ID token
     try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log('User Info', userInfo);
+      const { idToken } = await GoogleSignin.signIn();
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+      // Sign-in the user with the credential
+      await auth().signInWithCredential(googleCredential);
+
+      dispatch(loginSuccess("abcd"));
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        console.log('Error occured', error);
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-        console.log('Error occured', error);
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-        console.log('Error occured', error);
-      } else {
-        // some other error happened
-        console.log('Error occured', error);
-      }
+      console.log(error);
+      dispatch(loginFail(error));
     }
   };
+
+  useEffect(() => {
+    console.log("userData", userData);
+  }, [userData]);
 
   return (
     <View>
@@ -42,10 +53,15 @@ const SocialLogin = () => {
         <View style={styles.lineStyle} />
       </View>
       <View style={styles.iconStyle}>
-        <IconComponent iconName={'google'} googleLogin={GoogleSignIn} />
-        <IconComponent iconName={'apple'} />
-        <IconComponent iconName={'facebook'} />
+        <IconComponent iconName={"google"} googleLogin={onGoogleButtonPress} />
+        <IconComponent iconName={"apple"} />
+        <IconComponent iconName={"facebook"} />
       </View>
+      <Text>
+        {isLoading && "Loading....."}
+        {errorMsg && errorMsg}
+        {isLogin && "Nice BC"}
+      </Text>
     </View>
   );
 };
@@ -53,24 +69,24 @@ const SocialLogin = () => {
 export default SocialLogin;
 const styles = StyleSheet.create({
   separator: {
-    width: '90%',
+    width: "90%",
     paddingTop: 15,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   lineStyle: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     height: 2,
     flex: 1,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   lineText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     color: theme.colors.white,
     paddingHorizontal: 5,
     fontSize: 15,
-    fontFamily: 'OpenSans-Bold',
-    fontWeight: '500',
+    fontFamily: "OpenSans-Bold",
+    fontWeight: "500",
     letterSpacing: 0.5,
   },
-  iconStyle: {flexDirection: 'row', justifyContent: 'space-around'},
+  iconStyle: { flexDirection: "row", justifyContent: "space-around" },
 });
