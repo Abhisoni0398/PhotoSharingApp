@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AnimatedLoader from "react-native-animated-loader";
 import {
   GoogleSignin,
   statusCodes,
@@ -58,8 +59,17 @@ const SocialLogin = () => {
         <IconComponent iconName={"facebook"} />
       </View>
       <Text>
-        {isLoading && "Loading....."}
-        {errorMsg && errorMsg}
+        {isLoading && (
+          <AnimatedLoader
+            // visible={visible}
+            overlayColor="rgba(255,255,255,0.75)"
+            animationStyle={styles.lottie}
+            speed={1}
+          >
+            <Text>Doing something...</Text>
+          </AnimatedLoader>
+        )}
+        {errorMsg && console.log(errorMsg)}
         {isLogin && "Nice BC"}
       </Text>
     </View>
@@ -89,4 +99,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   iconStyle: { flexDirection: "row", justifyContent: "space-around" },
+  lottie: {
+    width: 100,
+    height: 100,
+  },
 });
