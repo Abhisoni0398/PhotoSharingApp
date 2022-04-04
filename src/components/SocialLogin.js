@@ -1,18 +1,19 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AnimatedLoader from "react-native-animated-loader";
 import {
   GoogleSignin,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
+import { LoginManager, AccessToken } from "react-native-fbsdk-next";
 import auth from "@react-native-firebase/auth";
 import theme from "../../assets/themes";
 import IconComponent from "./IconComponent";
 import { loginFail, loginStart, loginSuccess } from "../redux/action";
+import { NavigationContainer } from "@react-navigation/native";
 
-const SocialLogin = () => {
+const SocialLogin = ({ navigation }) => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
@@ -46,6 +47,37 @@ const SocialLogin = () => {
     console.log("userData", userData);
   }, [userData]);
 
+  const facebookLogin = async () => {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      "public_profile",
+      "email",
+      "user_friends",
+    ]);
+
+    if (result.isCancelled) {
+      throw "User cancelled the login process";
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw "Something went wrong obtaining access token";
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  };
+  const twitterLogin = () => {
+    navigation.navigate("SignUp");
+  };
+
   return (
     <View>
       <View style={styles.separator}>
@@ -55,21 +87,12 @@ const SocialLogin = () => {
       </View>
       <View style={styles.iconStyle}>
         <IconComponent iconName={"google"} googleLogin={onGoogleButtonPress} />
-        <IconComponent iconName={"apple"} />
-        <IconComponent iconName={"facebook"} />
+        <IconComponent iconName={"twitter"} googleLogin={twitterLogin} />
+        <IconComponent iconName={"facebook"} googleLogin={facebookLogin} />
       </View>
       <Text>
-        {isLoading && (
-          <AnimatedLoader
-            // visible={visible}
-            overlayColor="rgba(255,255,255,0.75)"
-            animationStyle={styles.lottie}
-            speed={1}
-          >
-            <Text>Doing something...</Text>
-          </AnimatedLoader>
-        )}
-        {errorMsg && console.log(errorMsg)}
+        {isLoading && "Loading....."}
+        {errorMsg && "errorMsg"}
         {isLogin && "Nice BC"}
       </Text>
     </View>
@@ -99,8 +122,4 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   iconStyle: { flexDirection: "row", justifyContent: "space-around" },
-  lottie: {
-    width: 100,
-    height: 100,
-  },
 });
