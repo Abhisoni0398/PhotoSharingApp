@@ -22,7 +22,7 @@ const SignIn = ({ navigation }) => {
   const move = () => {
     console.log(email, password);
     axios
-      .post("http://192.168.29.60:000/login", {
+      .post("http://192.168.29.60:5000/login", {
         email,
         password,
       })
@@ -57,7 +57,7 @@ const SignIn = ({ navigation }) => {
           handleChangeText={setPassword}
         />
         <Button move={move} text={"Login"} />
-        <SocialLogin />
+        <SocialLogin navigation={navigation} />
       </View>
       <Footer text1={"Don't have an account"} text2={"SignUp"} move={move} />
     </ImageBackground>

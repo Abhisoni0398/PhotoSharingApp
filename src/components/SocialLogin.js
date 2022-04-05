@@ -11,7 +11,6 @@ import auth from "@react-native-firebase/auth";
 import theme from "../../assets/themes";
 import IconComponent from "./IconComponent";
 import { loginFail, loginStart, loginSuccess } from "../redux/action";
-import { NavigationContainer } from "@react-navigation/native";
 
 const SocialLogin = ({ navigation }) => {
   useEffect(() => {

@@ -1,15 +1,16 @@
 /* eslint-disable prettier/prettier */
-import {View, StyleSheet, TextInput, Dimensions} from 'react-native';
-import React from 'react';
-import theme from '../../assets/themes';
-const {width} = Dimensions.get('window');
-const Input = props => {
-  const {placeholder, placeholderTextColor, type} = props;
+import { View, StyleSheet, TextInput, Dimensions } from "react-native";
+import React from "react";
+import theme from "../../assets/themes";
+const { width } = Dimensions.get("window");
+const Input = (props) => {
+  const { placeholder, placeholderTextColor, type, handleChangeText } = props;
   return (
     <View style={styles.mainView}>
       <TextInput
         type={type}
         placeholder={placeholder}
+        onChangeText={handleChangeText}
         placeholderTextColor={placeholderTextColor}
         style={styles.mailInput}
       />

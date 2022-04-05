@@ -16,7 +16,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 
 const SignUp = ({ navigation }) => {
-  const [email, setEmail] = useState("Hello");
+  const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirm_password, setConfirm_passord] = useState(null);
 
