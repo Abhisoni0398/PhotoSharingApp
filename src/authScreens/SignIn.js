@@ -14,28 +14,16 @@ import Button from "../components/Button";
 import SocialLogin from "../components/SocialLogin";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/action";
 // import SignUp from './SignUp';
 
 const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const move = () => {
-    console.log(email, password);
-    axios
-      .post("http://192.168.29.60:5000/login", {
-        email,
-        password,
-      })
-      .then((res) => {
-        if (res.data.status_code === 200) {
-          console.log("200", res.data.message);
-        } else if (res.data.status_code === 400) {
-          console.log("400", res.data.error_description);
-        } else if (res.data.status_code === 500) {
-          console.log("500", res.data.error_description);
-        }
-      })
-      .catch((err) => console.log(err));
+    dispatch(login({ email, password }));
   };
 
   return (
