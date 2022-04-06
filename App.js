@@ -29,7 +29,7 @@ const App = () => {
         ) : (
           <Auth />
         )} */}
-        <Nav />
+        <Tabs />
       </NavigationContainer>
     </Provider>
   );

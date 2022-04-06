@@ -2,21 +2,22 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const BottomTabs = createBottomTabNavigator();
 import { HomeIcon, ProfileIcon, SettingsIcon } from "../components/SvgIcons";
-import ImageGallery from "../components/ImageGallery";
+// import ImageGallery from "../components/ImageGallery";
 import Profile from "../Screens/Profile";
 import Settings from "../Screens/Settings";
-
+import Nav from "./Index";
 const Tabs = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={({ route }) => ({
-        headerTitleAlign: "center",
-        headerTitleStyle: { fontFamily: "bold" },
+        headerShown: false,
+        // headerTitleAlign: "center",
+        // headerTitleStyle: { fontFamily: "bold" },
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "grey",
         tabBarShowLabel: false,
         tabBarIcon: ({ color, size }) => {
-          if (route.name === "ImageGallery") {
+          if (route.name === "Nav") {
             return <HomeIcon color={color} size={size} />;
           }
           if (route.name === "Profile") {
@@ -28,7 +29,8 @@ const Tabs = () => {
         },
       })}
     >
-      <BottomTabs.Screen name="ImageGallery" component={ImageGallery} />
+      {/* <BottomTabs.Screen name="ImageGallery" component={ImageGallery} /> */}
+      <BottomTabs.Screen name="Nav" component={Nav} />
       <BottomTabs.Screen name="Profile" component={Profile} />
       <BottomTabs.Screen name="Settings" component={Settings} />
     </BottomTabs.Navigator>
