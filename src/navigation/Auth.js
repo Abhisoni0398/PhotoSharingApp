@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignIn from "../authScreens/SignIn";
 import SignUp from "../authScreens/SignUp";
 const Stack = createNativeStackNavigator();
+import Tabs from "./Tabs";
 
 const Auth = () => {
   return (

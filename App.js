@@ -7,7 +7,7 @@ import { LogBox } from "react-native";
 import Onboarding from "./src/components/OnBoarding";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import store from "./src/redux/store";
-// const Stack = createNativeStackNavigator();
+import Tabs from "./src/navigation/Tabs";
 LogBox.ignoreLogs(["VirtualizedLists"]);
 const App = () => {
   const [showOnBoarding, setShowOnBoarding] = useState(true);
@@ -22,13 +22,14 @@ const App = () => {
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator> */}
-        {showOnBoarding ? (
+        {/* {showOnBoarding ? (
           <Onboarding handleDone={onBoardHandleDone} />
         ) : isLoggedIn ? (
           <Nav />
         ) : (
           <Auth />
-        )}
+        )} */}
+        <Nav />
       </NavigationContainer>
     </Provider>
   );
