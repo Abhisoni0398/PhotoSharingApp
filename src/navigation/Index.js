@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 import Albums from "../components/Albums";
 import SharedAlbum from "../components/SharedAlbum";
-import Tabs from "./Tabs";
+import Tabs from "./TabStack";
+import DrawerStack from "./DrawerStack";
 const Nav = () => {
   return (
     <Stack.Navigator
@@ -20,6 +21,7 @@ const Nav = () => {
         },
       }}
     >
+      <Stack.Screen name="DrawerStack" component={DrawerStack} />
       <Stack.Screen
         name="Albums"
         component={Albums}
@@ -29,8 +31,9 @@ const Nav = () => {
           }
         }
       />
+
       <Stack.Screen name="SharedAlbum" component={SharedAlbum} />
-      <Stack.Screen name="Tabs" component={Tabs} />
+      {/* <Stack.Screen name="Tabs" component={Tabs} /> */}
     </Stack.Navigator>
   );
 };
