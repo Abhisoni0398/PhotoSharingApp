@@ -5,7 +5,8 @@ import { HomeIcon, ProfileIcon, SettingsIcon } from "../components/SvgIcons";
 // import ImageGallery from "../components/ImageGallery";
 import Profile from "../Screens/Profile";
 import Settings from "../Screens/Settings";
-import Nav from "./Index";
+import HomeStack from "./HomeStack";
+import NavigationStrings from "../constants/NavigationStrings";
 const Tabs = () => {
   return (
     <BottomTabs.Navigator
@@ -29,10 +30,13 @@ const Tabs = () => {
         },
       })}
     >
-      {/* <BottomTabs.Screen name="ImageGallery" component={ImageGallery} /> */}
-      <BottomTabs.Screen name="Nav" component={Nav} />
-      <BottomTabs.Screen name="Profile" component={Profile} />
-      <BottomTabs.Screen name="Settings" component={Settings} />
+      {/* <BottomTabs.Screen name="Nav" component={Index} /> */}
+      <BottomTabs.Screen name="Nav" component={HomeStack} />
+      <BottomTabs.Screen name={NavigationStrings.PROFILE} component={Profile} />
+      <BottomTabs.Screen
+        name={NavigationStrings.SETTINGS}
+        component={Settings}
+      />
     </BottomTabs.Navigator>
   );
 };
