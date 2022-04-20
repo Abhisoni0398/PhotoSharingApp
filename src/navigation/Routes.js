@@ -26,6 +26,7 @@ export default Routes = () => {
         )} */}
         <Stack.Navigator
           screenOptions={{
+            headerShown: false,
             headerTitleAlign: "center",
             headerTitleStyle: {
               fontFamily: "Nunito",

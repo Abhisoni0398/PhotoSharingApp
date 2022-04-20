@@ -10,8 +10,6 @@ const Drawer = createDrawerNavigator();
 const DrawerStack = () => {
   return (
     <Drawer.Navigator>
-      {/* <Drawer.Screen name="SharedAlbum" component={SharedAlbum} /> */}
-      {/* <Drawer.Screen name="Tab" component={TabStack} /> */}
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>

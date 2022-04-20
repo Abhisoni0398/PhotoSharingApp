@@ -6,11 +6,10 @@ import SharedAlbum from "../components/SharedAlbum";
 
 export default HomeStack = () => {
   return (
-    <>
-      {/* <Stack.Screen name="DrawerStack" component={DrawerStack} /> */}
+    <Stack.Navigator>
       <Stack.Screen name="Albums" component={Albums} />
 
       <Stack.Screen name="SharedAlbum" component={SharedAlbum} />
-    </>
+    </Stack.Navigator>
   );
 };

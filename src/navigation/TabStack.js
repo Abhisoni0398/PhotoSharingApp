@@ -6,19 +6,20 @@ import { HomeIcon, ProfileIcon, SettingsIcon } from "../components/SvgIcons";
 import Profile from "../Screens/Profile";
 import Settings from "../Screens/Settings";
 import HomeStack from "./HomeStack";
+import Albums from "../components/Albums";
 import NavigationStrings from "../constants/NavigationStrings";
 const Tabs = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        // headerTitleAlign: "center",
-        // headerTitleStyle: { fontFamily: "bold" },
+        headerTitleAlign: "center",
+        headerTitleStyle: { fontFamily: "bold" },
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "grey",
         tabBarShowLabel: false,
         tabBarIcon: ({ color, size }) => {
-          if (route.name === "Nav") {
+          if (route.name === "Albums") {
             return <HomeIcon color={color} size={size} />;
           }
           if (route.name === "Profile") {
@@ -30,8 +31,7 @@ const Tabs = () => {
         },
       })}
     >
-      {/* <BottomTabs.Screen name="Nav" component={Index} /> */}
-      <BottomTabs.Screen name="Nav" component={HomeStack} />
+      <BottomTabs.Screen name="Albums" component={HomeStack} />
       <BottomTabs.Screen name={NavigationStrings.PROFILE} component={Profile} />
       <BottomTabs.Screen
         name={NavigationStrings.SETTINGS}
