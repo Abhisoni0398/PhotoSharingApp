@@ -19,8 +19,8 @@ import { login } from "../redux/action";
 // import SignUp from './SignUp';
 
 const SignIn = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("abhi@gmail.com");
+  const [password, setPassword] = useState("abhi");
   const dispatch = useDispatch();
   const move = () => {
     dispatch(login({ email, password }));

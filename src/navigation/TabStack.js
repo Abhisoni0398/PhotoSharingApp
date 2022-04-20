@@ -18,6 +18,8 @@ const Tabs = () => {
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "grey",
         tabBarShowLabel: false,
+        tabBarInactiveBackgroundColor: "#C8C8C8",
+        tabBarActiveBackgroundColor: "yellow",
         tabBarIcon: ({ color, size }) => {
           if (route.name === "Albums") {
             return <HomeIcon color={color} size={size} />;

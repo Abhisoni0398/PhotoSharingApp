@@ -4,8 +4,7 @@ import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import store from "../redux/store";
-import Tabs from "./TabStack";
-import NavigationStrings from "../constants/NavigationStrings";
+import AuthStack from "./AuthStack";
 import MainStack from "./MainStack";
 const Stack = createNativeStackNavigator();
 export default Routes = () => {
@@ -38,6 +37,7 @@ export default Routes = () => {
             },
           }}
         >
+          {AuthStack(Stack)}
           {MainStack(Stack)}
         </Stack.Navigator>
       </NavigationContainer>

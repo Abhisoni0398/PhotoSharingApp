@@ -8,7 +8,6 @@ export default HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Albums" component={Albums} />
-
       <Stack.Screen name="SharedAlbum" component={SharedAlbum} />
     </Stack.Navigator>
   );
